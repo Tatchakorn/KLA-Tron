@@ -1,0 +1,26 @@
+{
+    "ok": true,
+    "result": [
+        {
+            "update_id": 803817585,
+            "message": {
+                "message_id": 28,
+                "from": {
+                    "id": 6143460504,
+                    "is_bot": false,
+                    "first_name": "Sin",
+                    "username": "few5058",
+                    "language_code": "th"
+                },
+                "chat": {
+                    "id": 6143460504,
+                    "first_name": "Sin",
+                    "username": "few5058",
+                    "type": "private"
+                },
+                "date": 1695008383,
+                "text": "O"
+            }
+        }
+    ]
+}
