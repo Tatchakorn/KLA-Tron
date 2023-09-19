@@ -22,6 +22,13 @@ class Notification:
      
     def send_message(self, chat_id: str, txt: str):
         dbg(f'(call) -> {get_f().f_code.co_name}')
-        url = f'{action_url("sendMessage")}?chat_id={chat_id}&text={txt}'
-        requests.post(url)
+        params = {
+            'chat_id': chat_id,
+            'text': txt,
+            'parse_mode': 'Markdown',  # Use Markdown or HTML mode to format the hyperlinks
+            'disable_web_page_preview': 'True',
+            }
+        
+        url = action_url('sendMessage')
+        requests.post(url, params=params)
         dbg(f'[VAR: url] <{url}>')

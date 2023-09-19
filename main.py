@@ -4,7 +4,15 @@ $ Transfer API ( from addr )
 '''
 
 from src.Util import Util
-from src._global import dbg, ADDR_LST, LOG_ENABLE, DB_NAME
+from src._global import (
+    dbg, 
+    ADDR_LST, 
+    LOG_ENABLE, 
+    DB_NAME, 
+    FORCE_SEND, 
+    CHAT_IDS, 
+    tron_addr_url,
+)
 from src.TronScan import Account
 from src.Notification import Notification
 from src.DBHandler import TokenBalanceDBHandler
@@ -22,6 +30,30 @@ logger = logging.getLogger(__name__)
 logger.disable = not LOG_ENABLE
 db_handler = TokenBalanceDBHandler(DB_NAME)
 
+class MessageHandler:
+    
+    def __init__(self):
+        self.msg = '---------- Balance Updated ----------\n'
+    
+    
+    def append(self, *msg):
+        for m in msg:
+            self.msg += f'{m}\n'
+
+    def append_line(self):
+        self.msg += f'{"-" * 50}\n'
+    
+    def get(self):
+        return self.msg
+    
+    @staticmethod
+    def to_hypertext_tron(txt):
+        '''
+        [Click here](https://example.com) 
+        <a href=""></a>
+        '''
+        return f'[{txt}]({tron_addr_url(txt)})'
+
 
 class Main:
 
@@ -32,10 +64,10 @@ class Main:
     
     @staticmethod
     def _run_task():
-        message = '------ Balance updated!! ------ \n'
+        
         send_update = False
         addr_lst = ADDR_LST
-        
+        msg = MessageHandler()
         
         for addr in addr_lst:
             address = addr.get('addr')
@@ -44,8 +76,10 @@ class Main:
             logger.info(f'Getting address for: {name}')
             
             acc = Account(**addr)
-            message += f'Address: {address}\n'
-            message += f'Name: {name}\n'
+            
+            msg.append(
+                msg.to_hypertext_tron(address), 
+                name)
             
             for d in acc.get_bal_lst():
                 token = d.get('token')
@@ -55,7 +89,6 @@ class Main:
                 logger.info(f'prev_bal (token: {token}, address: {address}): {prev_bal}')
                 logger.info(f'Balance from DB: {db_handler.get_balance(address,token)}')
 
-                
                 if prev_bal is None:
                     insert_res = db_handler.insert_balance(address, token, bal)
                     
@@ -63,42 +96,55 @@ class Main:
                     logger.info(f'[INSERT] ({address}, {token}, {bal}) : {insert_res}')
                     prev_bal = db_handler.get_balance(address,token)
                     logger.info(f'[After Insert]Balance from DB: {db_handler.get_balance(address,token)}')
+                
                 # print('bal:',type(bal), bal)
                 # print('prev_bal:',type(prev_bal), prev_bal)
                 # print('prev_bal == bal?:', prev_bal == bal)
-                if prev_bal != bal:
+                
+                n_bal = float(bal.replace(',', ''))
+                n_prev_bal = float(prev_bal.replace(',', ''))
+                
+                if prev_bal != bal and abs(n_bal - n_prev_bal) < 1000:
+                    send_update = True # ====> Send updated balance !!!
                     logger.info(f'[COMPARE] {bal}(bal) != {prev_bal}(prev_bal)')
-                    n_bal = float(bal.replace(',', ''))
-                    n_prev_bal = float(prev_bal.replace(',', ''))
+                    logger.info(f'[COMPARE] abs(n_bal - n_prev_bal) < 1000 {abs(n_bal - n_prev_bal) < 1000}')
+
                     change_str = ''
                     
+
                     if n_bal > n_prev_bal:
-                        change_str = f'({urllib.parse.quote_plus("+")}) {"{:,.2f}".format(n_bal - n_prev_bal)}'
+                        # change_str = f'({urllib.parse.quote_plus("+")}) {"{:,.2f}".format(n_bal - n_prev_bal)}'
+                        change_str = f'(➕) {"{:,.2f}".format(n_bal - n_prev_bal)}'
                     else:
-                        change_str = f'(-) {"{:,.2f}".format(n_prev_bal - n_bal)}'
+                        change_str = f'(➖) {"{:,.2f}".format(n_prev_bal - n_bal)}'
                     
-                    message += f'[{token}] -> balance: {bal} (New!) \n'
-                    message += f'<change: {change_str}>\n'
+                    if token == 'Tether USD':
+                        token = 'USD'
+                    
+                    msg.append(
+                        f'[{token}] balance: 💲**{bal}** (New!)',
+                        f'<{change_str}>',
+                        )
                     insert_res = db_handler.update_balance(address, token, bal)
                     logger.info(f'[UPDATE] ({address}, {token}, {bal}) : {insert_res}')
                     
-                    send_update = True
                 else:
-                    message += f'[{token}] -> balance: {bal}\n'
+                    msg.append(f'[{token}] -> balance: 💲**{bal}**')
+                
                 logger.info(f'token: {token}, balance: {bal}')
             
-            message += f'{"-"*40}\n'
+            msg.append_line()
         
-        logger.info(f'send_update: {send_update}')
-        logger.info(message)
+        logger.info(f'=====> send_update: {send_update}')
+        logger.info(msg.get())
         
         n = Notification()
-        chat_ids = ['6505704846', '1437421739', '6143460504', '6192414506']
-        
-        if send_update:
-            n.get_updates()
+        chat_ids = CHAT_IDS
+
+        if send_update or FORCE_SEND:
+            # n.get_updates()
             for c in chat_ids:
-                n.send_message(c, message)
+                n.send_message(c, msg.get())
         send_update = False
     
     

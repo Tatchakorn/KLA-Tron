@@ -2,10 +2,12 @@ import requests
 from sys import _getframe as get_f
 import os
 
+
 ################################################
 BASE_URL = 'https://apilist.tronscanapi.com/api/'
 DEBUG_ENABLE = False
 LOG_ENABLE = False
+FORCE_SEND = False # for testing only
 
 HEADERS = {
     'Accept': 'application/json',
@@ -16,6 +18,12 @@ TELEGRAM_API_BASE_URL = 'https://api.telegram.org/bot'
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 TELEGRAM_API_URL = f'{TELEGRAM_API_BASE_URL}{BOT_TOKEN}'
 DB_NAME = 'TokenBalance.db'
+CHAT_IDS = ['6505704846', '1437421739', '6143460504', '6192414506']
+
+def tron_addr_url(addr: str) -> str:
+    return f'https://tronscan.org/#/address/{addr}'
+
+
 ADDR_LST = [
     {
        'addr': 'TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1', 

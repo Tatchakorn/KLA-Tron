@@ -1,63 +1,98 @@
-2023-09-18 22:57:45,631 - INFO - Starting ...
-2023-09-18 22:57:45,631 - INFO - Getting address for: Few
-2023-09-18 22:57:47,646 - INFO - prev_bal (token: Tether USD, address: TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1): 571.06
-2023-09-18 22:57:47,646 - INFO - Balance from DB: 571.06
-2023-09-18 22:57:47,646 - INFO - [COMPARE] 571.06(bal) != 100(prev_bal)
-2023-09-18 22:57:47,646 - INFO - [UPDATE] (TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1, Tether USD, 571.06) : True
-2023-09-18 22:57:47,646 - INFO - token: Tether USD, balance: 571.06
-2023-09-18 22:57:47,646 - INFO - Getting address for: Tawan 1
-2023-09-18 22:57:49,177 - INFO - prev_bal (token: Tether USD, address: TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r): 11.03
-2023-09-18 22:57:49,177 - INFO - Balance from DB: 11.03
-2023-09-18 22:57:49,177 - INFO - [COMPARE] 11.03(bal) != 100(prev_bal)
-2023-09-18 22:57:49,193 - INFO - [UPDATE] (TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r, Tether USD, 11.03) : True
-2023-09-18 22:57:49,193 - INFO - token: Tether USD, balance: 11.03
-2023-09-18 22:57:49,193 - INFO - Getting address for: Tawan 2
-2023-09-18 22:57:51,020 - INFO - prev_bal (token: Tether USD, address: TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR): 6,730.12
-2023-09-18 22:57:51,020 - INFO - Balance from DB: 6,730.12
-2023-09-18 22:57:51,020 - INFO - [COMPARE] 6,730.12(bal) != 100(prev_bal)
-2023-09-18 22:57:51,020 - INFO - [UPDATE] (TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR, Tether USD, 6,730.12) : True
-2023-09-18 22:57:51,020 - INFO - token: Tether USD, balance: 6,730.12
-2023-09-18 22:57:51,020 - INFO - Getting address for: Tawan 3
-2023-09-18 22:57:52,457 - INFO - prev_bal (token: Tether USD, address: TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N): 864.34
-2023-09-18 22:57:52,457 - INFO - Balance from DB: 864.34
-2023-09-18 22:57:52,457 - INFO - [COMPARE] 864.34(bal) != 100(prev_bal)
-2023-09-18 22:57:52,457 - INFO - [UPDATE] (TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N, Tether USD, 864.34) : True
-2023-09-18 22:57:52,457 - INFO - token: Tether USD, balance: 864.34
-2023-09-18 22:57:52,457 - INFO - Getting address for: Tawan 4
-2023-09-18 22:57:54,191 - INFO - prev_bal (token: Tether USD, address: TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK): 23.70
-2023-09-18 22:57:54,191 - INFO - Balance from DB: 23.70
-2023-09-18 22:57:54,191 - INFO - [COMPARE] 23.70(bal) != 100(prev_bal)
-2023-09-18 22:57:54,207 - INFO - [UPDATE] (TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK, Tether USD, 23.70) : True
-2023-09-18 22:57:54,207 - INFO - token: Tether USD, balance: 23.70
-2023-09-18 22:57:54,207 - INFO - Getting address for: Fourwheel
-2023-09-18 22:57:57,596 - INFO - send_update: True
-2023-09-18 22:57:57,596 - INFO - ------ Balance updated!! ------ 
-Address: TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1
-Name: Few
-[Tether USD] -> balance: 571.06 (New!) 
-<change: (%2B) 471.06>
-----------------------------------------
-Address: TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r
-Name: Tawan 1
-[Tether USD] -> balance: 11.03 (New!) 
-<change: (-) 88.97>
-----------------------------------------
-Address: TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR
-Name: Tawan 2
-[Tether USD] -> balance: 6,730.12 (New!) 
-<change: (%2B) 6,630.12>
-----------------------------------------
-Address: TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N
-Name: Tawan 3
-[Tether USD] -> balance: 864.34 (New!) 
-<change: (%2B) 764.34>
-----------------------------------------
-Address: TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK
-Name: Tawan 4
-[Tether USD] -> balance: 23.70 (New!) 
-<change: (-) 76.30>
-----------------------------------------
-Address: TKQgV95wcsrPKQXL2qssT1ng6aaojwed7w
-Name: Fourwheel
-----------------------------------------
+2023-09-19 20:55:59,106 - INFO - Starting ...
+2023-09-19 20:55:59,108 - INFO - Getting address for: Few
+2023-09-19 20:56:00,013 - INFO - prev_bal (token: Tether USD, address: TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1): 558.14
+2023-09-19 20:56:00,014 - INFO - Balance from DB: 558.14
+2023-09-19 20:56:00,014 - INFO - token: Tether USD, balance: 558.14
+2023-09-19 20:56:00,015 - INFO - Getting address for: Tawan 1
+2023-09-19 20:56:00,914 - INFO - prev_bal (token: Tether USD, address: TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r): 10.29
+2023-09-19 20:56:00,915 - INFO - Balance from DB: 10.29
+2023-09-19 20:56:00,916 - INFO - token: Tether USD, balance: 10.29
+2023-09-19 20:56:00,916 - INFO - Getting address for: Tawan 2
+2023-09-19 20:56:01,785 - INFO - prev_bal (token: Tether USD, address: TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR): 200,857.18
+2023-09-19 20:56:01,786 - INFO - Balance from DB: 200,857.18
+2023-09-19 20:56:01,786 - INFO - token: Tether USD, balance: 100,007.22
+2023-09-19 20:56:01,787 - INFO - Getting address for: Tawan 3
+2023-09-19 20:56:02,659 - INFO - prev_bal (token: Tether USD, address: TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N): 1.79
+2023-09-19 20:56:02,659 - INFO - Balance from DB: 1.79
+2023-09-19 20:56:02,659 - INFO - token: Tether USD, balance: 1.79
+2023-09-19 20:56:02,659 - INFO - Getting address for: Tawan 4
+2023-09-19 20:56:03,766 - INFO - prev_bal (token: Tether USD, address: TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK): 23.70
+2023-09-19 20:56:03,767 - INFO - Balance from DB: 23.70
+2023-09-19 20:56:03,768 - INFO - token: Tether USD, balance: 23.70
+2023-09-19 20:56:03,768 - INFO - Getting address for: Fourwheel
+2023-09-19 20:56:04,665 - INFO - =====> send_update: False
+2023-09-19 20:56:04,665 - INFO - ---------- Balance Updated ----------
+[TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1](https://tronscan.org/#/address/TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1)
+Few
+[Tether USD] -> balance: 💲**558.14**
+--------------------------------------------------
+[TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r](https://tronscan.org/#/address/TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r)
+Tawan 1
+[Tether USD] -> balance: 💲**10.29**
+--------------------------------------------------
+[TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR](https://tronscan.org/#/address/TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR)
+Tawan 2
+[Tether USD] -> balance: 💲**100,007.22**
+--------------------------------------------------
+[TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N](https://tronscan.org/#/address/TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N)
+Tawan 3
+[Tether USD] -> balance: 💲**1.79**
+--------------------------------------------------
+[TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK](https://tronscan.org/#/address/TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK)
+Tawan 4
+[Tether USD] -> balance: 💲**23.70**
+--------------------------------------------------
+[TKQgV95wcsrPKQXL2qssT1ng6aaojwed7w](https://tronscan.org/#/address/TKQgV95wcsrPKQXL2qssT1ng6aaojwed7w)
+Fourwheel
+--------------------------------------------------
 
+2023-09-19 20:57:43,485 - INFO - Starting ...
+2023-09-19 20:57:43,485 - INFO - Getting address for: Few
+2023-09-19 20:57:44,413 - INFO - prev_bal (token: Tether USD, address: TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1): 558.14
+2023-09-19 20:57:44,414 - INFO - Balance from DB: 558.14
+2023-09-19 20:57:44,414 - INFO - token: Tether USD, balance: 558.14
+2023-09-19 20:57:44,414 - INFO - Getting address for: Tawan 1
+2023-09-19 20:57:45,340 - INFO - prev_bal (token: Tether USD, address: TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r): 10.29
+2023-09-19 20:57:45,340 - INFO - Balance from DB: 10.29
+2023-09-19 20:57:45,340 - INFO - token: Tether USD, balance: 10.29
+2023-09-19 20:57:45,340 - INFO - Getting address for: Tawan 2
+2023-09-19 20:57:46,270 - INFO - prev_bal (token: Tether USD, address: TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR): 200,857.18
+2023-09-19 20:57:46,284 - INFO - Balance from DB: 200,857.18
+2023-09-19 20:57:46,285 - INFO - token: Tether USD, balance: 100,007.23
+2023-09-19 20:57:46,285 - INFO - Getting address for: Tawan 3
+2023-09-19 20:57:47,320 - INFO - prev_bal (token: Tether USD, address: TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N): 1.79
+2023-09-19 20:57:47,320 - INFO - Balance from DB: 1.79
+2023-09-19 20:57:47,320 - INFO - token: Tether USD, balance: 1.79
+2023-09-19 20:57:47,320 - INFO - Getting address for: Tawan 4
+2023-09-19 20:57:48,191 - INFO - prev_bal (token: Tether USD, address: TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK): 23.70
+2023-09-19 20:57:48,192 - INFO - Balance from DB: 23.70
+2023-09-19 20:57:48,192 - INFO - token: Tether USD, balance: 23.70
+2023-09-19 20:57:48,193 - INFO - Getting address for: Fourwheel
+2023-09-19 20:57:49,064 - INFO - =====> send_update: False
+2023-09-19 20:57:49,065 - INFO - ---------- Balance Updated ----------
+[TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1](https://tronscan.org/#/address/TBLjcanTSDuAPxP59uFFQUJsEvYPn91ic1)
+Few
+[Tether USD] -> balance: 💲**558.14**
+--------------------------------------------------
+[TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r](https://tronscan.org/#/address/TBrUnjrTynzQSHSnPg7xsK2dDtdALBp94r)
+Tawan 1
+[Tether USD] -> balance: 💲**10.29**
+--------------------------------------------------
+[TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR](https://tronscan.org/#/address/TEMc7yUEaqJYxhuZby2H4a4mdZD3y7f8KR)
+Tawan 2
+[Tether USD] -> balance: 💲**100,007.23**
+--------------------------------------------------
+[TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N](https://tronscan.org/#/address/TU1UuY7zxVtxJe1wSGK1eXhPgiTGzANu6N)
+Tawan 3
+[Tether USD] -> balance: 💲**1.79**
+--------------------------------------------------
+[TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK](https://tronscan.org/#/address/TAKmFcyPKtivgKz7JmXVDaih2T1s3hHrBK)
+Tawan 4
+[Tether USD] -> balance: 💲**23.70**
+--------------------------------------------------
+[TKQgV95wcsrPKQXL2qssT1ng6aaojwed7w](https://tronscan.org/#/address/TKQgV95wcsrPKQXL2qssT1ng6aaojwed7w)
+Fourwheel
+--------------------------------------------------
+
+2023-09-19 20:59:12,665 - INFO - Starting ...
+2023-09-19 20:59:19,438 - INFO - ----- [Closing DB connection] -----
