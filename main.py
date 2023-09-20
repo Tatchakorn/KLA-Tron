@@ -104,7 +104,7 @@ class Main:
                 n_bal = float(bal.replace(',', ''))
                 n_prev_bal = float(prev_bal.replace(',', ''))
                 
-                if prev_bal != bal and abs(n_bal - n_prev_bal) < 1000:
+                if prev_bal != bal and abs(n_bal - n_prev_bal) > 1000:
                     send_update = True # ====> Send updated balance !!!
                     logger.info(f'[COMPARE] {bal}(bal) != {prev_bal}(prev_bal)')
                     logger.info(f'[COMPARE] abs(n_bal - n_prev_bal) < 1000 {abs(n_bal - n_prev_bal) < 1000}')
