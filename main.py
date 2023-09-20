@@ -118,8 +118,6 @@ class Main:
                     else:
                         change_str = f'(➖) {"{:,.2f}".format(n_prev_bal - n_bal)}'
                     
-                    if token == 'Tether USD':
-                        token = 'USD'
                     
                     msg.append(
                         f'[{token}] balance: 💲**{bal}** (New!)',
@@ -129,7 +127,7 @@ class Main:
                     logger.info(f'[UPDATE] ({address}, {token}, {bal}) : {insert_res}')
                     
                 else:
-                    msg.append(f'[{token}] -> balance: 💲**{bal}**')
+                    msg.append(f'[{token if token != "Tether USD" else "USD"}] -> balance: 💲**{bal}**')
                 
                 logger.info(f'token: {token}, balance: {bal}')
             
