@@ -33,7 +33,7 @@ db_handler = TokenBalanceDBHandler(DB_NAME)
 class MessageHandler:
     
     def __init__(self):
-        self.msg = '---------- Balance Updated ----------\n'
+        self.msg = '----- Balance Updated (V3) -----\n'
     
     
     def append(self, *msg):
@@ -41,10 +41,14 @@ class MessageHandler:
             self.msg += f'{m}\n'
 
     def append_line(self):
-        self.msg += f'{"-" * 50}\n'
+        self.msg += f'{"-" * 20}\n'
     
     def get(self):
         return self.msg
+    
+    @staticmethod
+    def format_token(token):
+        return token if token != 'Tether USD' else 'USD'
     
     @staticmethod
     def to_hypertext_tron(txt):
@@ -97,12 +101,12 @@ class Main:
                     prev_bal = db_handler.get_balance(address,token)
                     logger.info(f'[After Insert]Balance from DB: {db_handler.get_balance(address,token)}')
                 
-                # print('bal:',type(bal), bal)
-                # print('prev_bal:',type(prev_bal), prev_bal)
-                # print('prev_bal == bal?:', prev_bal == bal)
-                
                 n_bal = float(bal.replace(',', ''))
                 n_prev_bal = float(prev_bal.replace(',', ''))
+                
+                if prev_bal != bal: # Update whenever there is a difference
+                    insert_res = db_handler.update_balance(address, token, bal)
+                    logger.info(f'[UPDATE] ({address}, {token}, {bal}) : {insert_res}')
                 
                 if prev_bal != bal and abs(n_bal - n_prev_bal) > 1000:
                     send_update = True # ====> Send updated balance !!!
@@ -113,21 +117,18 @@ class Main:
                     
 
                     if n_bal > n_prev_bal:
-                        # change_str = f'({urllib.parse.quote_plus("+")}) {"{:,.2f}".format(n_bal - n_prev_bal)}'
                         change_str = f'(➕) {"{:,.2f}".format(n_bal - n_prev_bal)}'
                     else:
                         change_str = f'(➖) {"{:,.2f}".format(n_prev_bal - n_bal)}'
                     
                     
                     msg.append(
-                        f'[{token}] balance: 💲**{bal}** (New!)',
+                        f'[{msg.format_token(token)}] Balance: 💲**{bal}** (New!)',
                         f'<{change_str}>',
                         )
-                    insert_res = db_handler.update_balance(address, token, bal)
-                    logger.info(f'[UPDATE] ({address}, {token}, {bal}) : {insert_res}')
                     
                 else:
-                    msg.append(f'[{token if token != "Tether USD" else "USD"}] -> balance: 💲**{bal}**')
+                    msg.append(f'[{msg.format_token(token)}] balance: 💲**{bal}**')
                 
                 logger.info(f'token: {token}, balance: {bal}')
             
@@ -139,8 +140,8 @@ class Main:
         n = Notification()
         chat_ids = CHAT_IDS
 
-        if send_update or FORCE_SEND:
-            # n.get_updates()
+        if send_update or FORCE_SEND or True:
+            n.get_updates()
             for c in chat_ids:
                 n.send_message(c, msg.get())
         send_update = False
@@ -152,9 +153,9 @@ class Main:
        logger.info('Starting ...')
        ##############################
        ##### TEST SEND
-       # self._run_task()
-       # db_handler.close_connection()
-       # exit()
+       self._run_task()
+       db_handler.close_connection()
+       exit()
        ##############################
        try:
           while True:
@@ -162,6 +163,11 @@ class Main:
             time.sleep(1)
        except Exception as e:
           logger.error(f'{str(e)}')
+          logger.error(f'=====> Restarting...')
+          time.sleep(1)
+          schedule.clear()
+          time.sleep(1)
+          self.run()
        
        finally:
           logger.info('----- [Closing DB connection] -----')
