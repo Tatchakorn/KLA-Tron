@@ -12,6 +12,7 @@ from src._global import (
     FORCE_SEND, 
     CHAT_IDS, 
     tron_addr_url,
+    LOG_PATH,
 )
 from src.TronScan import Account
 from src.Notification import Notification
@@ -20,21 +21,25 @@ import logging
 import schedule
 import time
 import urllib.parse
+import os
 
+########################################
+# GLOBAL SETUP
 logging.basicConfig(
-    filename='noti.log', 
+    filename=LOG_PATH, 
     level=logging.INFO, 
     format='%(asctime)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)
 logger.disable = not LOG_ENABLE
 db_handler = TokenBalanceDBHandler(DB_NAME)
+########################################
+
 
 class MessageHandler:
     
     def __init__(self):
         self.msg = '----- Balance Updated (V3) -----\n'
-    
     
     def append(self, *msg):
         for m in msg:
@@ -65,6 +70,17 @@ class Main:
         dbg('[BEGIN] ----- Main -----')
         self.run()
         dbg('[END]   ----- Main -----')
+
+
+    @staticmethod
+    def _clean_log():
+        try:
+            with open(LOG_PATH, 'w') as f:
+                now = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+                f.write(f'{now} => [LOG CLEARED]')
+        except Exception as e:
+            print(f'_clean_log: {e}')
+
     
     @staticmethod
     def _run_task():
@@ -139,8 +155,14 @@ class Main:
         
         n = Notification()
         chat_ids = CHAT_IDS
-
-        if send_update or FORCE_SEND or True:
+        
+        ##############################
+        ##### TEST SEND
+        # FORCE_SEND = True
+        ##############################
+        
+        
+        if send_update or FORCE_SEND:
             n.get_updates()
             for c in chat_ids:
                 n.send_message(c, msg.get())
@@ -149,13 +171,13 @@ class Main:
     
     def run(self):
        schedule.every(1).minutes.do(self._run_task)
-       # schedule.every(1).seconds.do(self._run_task)
+       schedule.every().day.at('00:00').do(self._clean_log)
        logger.info('Starting ...')
        ##############################
        ##### TEST SEND
-       self._run_task()
-       db_handler.close_connection()
-       exit()
+       # self._run_task()
+       # db_handler.close_connection()
+       # exit()
        ##############################
        try:
           while True:
@@ -170,8 +192,9 @@ class Main:
           self.run()
        
        finally:
-          logger.info('----- [Closing DB connection] -----')
+          logger.info('----- [Closing DB connection & logger] -----')
           db_handler.close_connection()
+          logger.shutdown()
 
 
 if __name__ == '__main__':
