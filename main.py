@@ -100,7 +100,21 @@ class Main:
                 msg.to_hypertext_tron(address), 
                 name)
             
-            for d in acc.get_bal_lst():
+            # get balance from Tron API
+            curr_balance_lst = acc.get_bal_lst()
+            curr_token_lst = [d.get('token') for d in balance_lst]
+            
+            # get all tokens for this addr from DB
+            prev_token_bal_lst = self.db_handler.get_all_token_bal(address)
+            prev_token_lst = [t[0] for t in prev_token_bal_lst]
+            common_token_set = set(prev_token_lst).intersection(set(curr_token_lst))
+            set_zero_lst = list(set(prev_token_lst) - common_token_set)
+            
+            for token in set_zero_lst:
+                curr_balance_lst.append({'token': 'token', 'balance': '0'})
+
+            
+            for d in curr_balance_lst:
                 token = d.get('token')
                 bal = d.get('balance')
                 

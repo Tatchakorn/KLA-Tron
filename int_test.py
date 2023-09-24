@@ -27,8 +27,9 @@ class TestDB:
             ##### Actual test < #####
             
             print(f'>> get_all_token_bal("{addr}")')
-            res = self.db_handler.get_all_token_bal(addr)
-            print(res)
+            token_bal_lst = self.db_handler.get_all_token_bal(addr)
+            token_lst = [t[0] for t in token_bal_lst]
+            print('Tether USD' in token_lst)
             
             ##### Actual test > #####
 
