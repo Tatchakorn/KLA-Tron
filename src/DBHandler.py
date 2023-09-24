@@ -63,10 +63,23 @@ class TokenBalanceDBHandler:
         ''', (address, token))
         result = self.cursor.fetchone()
         return result[0] if result else None
+    
+    
+    def get_all_token_bal(self, address):
+        '''returns list of (token, balance)'''
+        
+        self.cursor.execute('''
+            SELECT * FROM token_balance
+            WHERE address = ?
+        ''', (address,))
+        
+        result = self.cursor.fetchall()
+        if result is not None:
+            result = [(r[1], r[2]) for r in result]
+        else:
+            result = None
+        return result
+
 
     def close_connection(self):
         self.conn.close()
-
-
-
-

@@ -8,7 +8,6 @@ BASE_URL = 'https://apilist.tronscanapi.com/api/'
 LOG_PATH = './logs/app.log'
 DEBUG_ENABLE = False
 LOG_ENABLE = False
-FORCE_SEND = False # for testing only
 
 HEADERS = {
     'Accept': 'application/json',

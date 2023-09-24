@@ -9,7 +9,6 @@ from src._global import (
     ADDR_LST, 
     LOG_ENABLE, 
     DB_NAME, 
-    FORCE_SEND, 
     CHAT_IDS, 
     tron_addr_url,
     LOG_PATH,
